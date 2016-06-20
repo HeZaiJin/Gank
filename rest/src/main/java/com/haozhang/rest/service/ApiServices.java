@@ -13,8 +13,7 @@ import rx.Observable;
  */
 public interface ApiServices {
 
-    /**历史上的今天API START*/
-
+    /**retrofit 结合 rxjava 的api ****-start-**/
     /***
      * 事件列表
      * params:
@@ -26,11 +25,19 @@ public interface ApiServices {
      */
     @POST("toh")
     Observable<ResponseListEvent> loadListInofsWithRx(@Query("v") String v, @Query("key") String key, @Query("month") int month, @Query("day") int day);
+    /**retrofit 结合 rxjava 的api ****-end-**/
 
-
+    /**retrofit  的api ****-start-**/
     @POST("toh")
     Call<ResponseListEvent> loadListInofsWithCall(@Query("v") String v, @Query("key") String key, @Query("month") int month, @Query("day") int day);
 
-    /**历史上的今天API END*/
+    /**retrofit  的api ****-end-**/
+
+
+    /**gank api**/
+
+
+
+    /**gank api[end]**/
 
 }

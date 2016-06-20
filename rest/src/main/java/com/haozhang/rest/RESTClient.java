@@ -61,4 +61,12 @@ public class RESTClient {
         return sHttpService_rx.loadListInofsWithRx(params.v,params.key,params.month,params.day);
     }
 
+
+
+
+
+    public static void cancle(){
+
+    }
+
 }
