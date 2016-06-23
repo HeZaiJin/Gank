@@ -4,6 +4,7 @@ package com.haozhang.rest;
 import com.haozhang.rest.config.Configs;
 import com.haozhang.rest.modle.RequestListEventParams;
 import com.haozhang.rest.modle.ResponseListEvent;
+import com.haozhang.rest.modle.SearchDatas;
 import com.haozhang.rest.service.ApiServices;
 
 import retrofit2.Call;
@@ -57,12 +58,24 @@ public class RESTClient {
      * @param params
      * @return
      */
+    @Deprecated
     public static Observable<ResponseListEvent> queryListEvent(final RequestListEventParams params){
         return sHttpService_rx.loadListInofsWithRx(params.v,params.key,params.month,params.day);
     }
 
-
-
+    /**
+     * 获取搜索数据
+     * @param type  type：all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
+     * @param index page index
+     * @return
+     */
+    public static Observable<SearchDatas> loadSearchDatas(String type, int index){
+        String ins = String.valueOf(index);
+        if (null!=ins){
+            return sHttpService_rx.loadSearchDatas(type,ins);
+        }
+        return null;
+    }
 
 
     public static void cancle(){

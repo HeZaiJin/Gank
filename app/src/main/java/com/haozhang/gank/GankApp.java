@@ -7,6 +7,8 @@ import com.haozhang.gank.utils.CrashHandler;
 /**
  * @author HaoZhang
  * @date 2016/6/17.
+ *
+ * 使用Rx+retrofit+rxbux
  */
 public class GankApp extends Application {
 

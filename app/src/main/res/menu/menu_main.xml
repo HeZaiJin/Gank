@@ -1,9 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.haozhang.gank.ui.activity.MainActivity">
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navigation_item_home"
+            android:icon="@drawable/icon_setting"
+            android:title="搜索" />
+        <item
+            android:id="@+id/navigation_item_blog"
+            android:icon="@drawable/icon_setting"
+            android:title="设置" />
+        <item
+            android:id="@+id/navigation_item_about"
+            android:icon="@drawable/icon_setting"
+            android:title="关于" />
+    </group>l
 </menu>
