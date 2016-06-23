@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
         if (null != savedInstanceState) {
 
         }
-
+        // ready to get data
         RESTClient.loadSearchDatas("Android", 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
