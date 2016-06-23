@@ -24,6 +24,7 @@ public class MainActivity extends BaseActivity {
     Toolbar mToolbar;
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class MainActivity extends BaseActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-            if(Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP){
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 //将侧边栏顶部延伸至status bar
                 mDrawerLayout.setFitsSystemWindows(true);
                 //将主页面顶部延伸至status bar;虽默认为false,但经测试,DrawerLayout需显示设置
@@ -40,7 +41,7 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        if (null != savedInstanceState){
+        if (null != savedInstanceState) {
 
         }
 
@@ -50,8 +51,8 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Action1<SearchDatas>() {
                     @Override
                     public void call(SearchDatas searchDatas) {
-                        if (null == searchDatas)return;
-                        Log.d("search","get datas  :"+searchDatas.toString());
+                        if (null == searchDatas) return;
+                        Log.d("search", "get datas  :" + searchDatas.toString());
                     }
                 })
         ;
@@ -63,7 +64,7 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    public void initView(){
+    public void initView() {
         mToolbar = (Toolbar) findViewById(R.id.toolBar);
         setSupportActionBar(mToolbar);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -71,7 +72,7 @@ public class MainActivity extends BaseActivity {
         mNavigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(mDrawerLayout,"this is navigation header view",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mDrawerLayout, "this is navigation header view", Snackbar.LENGTH_SHORT).show();
             }
         });
     }
