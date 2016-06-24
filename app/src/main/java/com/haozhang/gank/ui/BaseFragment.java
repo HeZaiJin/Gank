@@ -2,57 +2,115 @@ package com.haozhang.gank.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
 /**
+ * 懒加载
+ *
  * @author HaoZhang
  * @date 2016/6/20.
  */
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends SwipeBackFragment {
 
-    public static final String STATE_HIDE = "FRAGMENT_STATE_HIDE";
+    private boolean isFirstVisible = true;
+    private boolean isFirstInvisible = true;
+    private boolean isPrepared;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initPrepare();
+    }
+
+    private synchronized void initPrepare() {
+        if (isPrepared) {
+            onFirstUserVisible();
+        } else {
+            isPrepared = true;
+        }
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (isFirstVisible) {
+                isFirstVisible = false;
+                initPrepare();
+            } else {
+                onUserVisible();
+            }
+        } else {
+            if (isFirstInvisible) {
+                isFirstInvisible = false;
+                onFirstUserInvisible();
+            } else {
+                onUserInvisible();
+            }
+        }
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (getContentViewLayoutID() != 0) {
+            return inflater.inflate(getContentViewLayoutID(), null);
+        } else {
+            return super.onCreateView(inflater, container, savedInstanceState);
+        }
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // 保存fragment的hide状态
-        // 注意！！！
-        /**
-         * 在fragment的创建Activity中，需要经过saveInstanceState判断再创建fragment
-        public class MainActivity ... {
-            @Override
-            protected void onCreate(@Nullable Bundle savedInstanceState) {
-            // 这里一定要在save为null时才加载Fragment，Fragment中onCreateView等生命周里加载根子Fragment同理
-            // 因为在页面重启时，Fragment会被保存恢复，而此时再加载Fragment会重复加载，导致重叠
-            if(saveInstanceState == null){
-                // 这里加载根Fragment
-
-                }
-            }
-        }
-         */
-        if (null != savedInstanceState) {
-            boolean b = savedInstanceState.getBoolean(STATE_HIDE);
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            if (b){
-                ft.hide(this);
-            }else {
-                ft.show(this);
-            }
-            ft.commit();
-        }
-
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initViewsAndEvents(view);
     }
+
+    /**
+     * content view 的layout id
+     * @return
+     */
+    protected abstract int getContentViewLayoutID();
+
+    /**
+     * 初始化view
+     * @param view
+     */
+    protected abstract void initViewsAndEvents(View view);
+
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(STATE_HIDE, isHidden());
+    public void onDestroy() {
+        DetoryViewAndThing();
+        super.onDestroy();
     }
+
+
+    /**
+     * 加载数据 / 开启动画 / 广播.....
+     */
+    protected abstract void onFirstUserVisible();
+
+    /**
+     * 用户可见的时候
+     * 开启动画 / 广播.....
+     */
+    protected abstract void onUserVisible();
+
+    private void onFirstUserInvisible() { }
+
+    /**
+     * 用户不可见的时候
+     * 注销广播，暂停动画
+     */
+    protected abstract void onUserInvisible();
+
+    /**
+     * 回收销毁
+     */
+    protected abstract void DetoryViewAndThing();
 }

@@ -1,9 +1,10 @@
 package com.haozhang.gank.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
-public abstract class BaseActivity extends AppCompatActivity {
+import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
+
+public abstract class BaseActivity extends SwipeBackActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
