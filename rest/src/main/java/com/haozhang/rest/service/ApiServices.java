@@ -1,8 +1,10 @@
 package com.haozhang.rest.service;
 
 
+import com.haozhang.rest.modle.BaseData;
 import com.haozhang.rest.modle.ResponseListEvent;
-import com.haozhang.rest.modle.SearchDatas;
+import com.haozhang.rest.modle.SearchItemDatas;
+import com.haozhang.rest.modle.WelfareItemDatas;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -108,8 +110,10 @@ public interface ApiServices {
 
     // http://gank.io/api/search/query/listview/category/Android/count/10/page/1
     @GET("search/query/listview/category/{type}/count/10/page/{index}")
-    Observable<SearchDatas> loadSearchDatas(@Path("type") String type,@Path("index") String index);
+    Observable<BaseData<SearchItemDatas>> loadSearchDatas(@Path("type") String type, @Path("index") String index);
 
+    @GET("search/query/listview/category/{type}/count/10/page/{index}")
+    Observable<BaseData<WelfareItemDatas>> loadWelfareDatas(@Path("type") String type, @Path("index") String index);
 
     /**gank api[end]**/
 

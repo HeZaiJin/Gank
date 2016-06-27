@@ -7,20 +7,17 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.haozhang.gank.R;
-import com.haozhang.gank.ui.BaseActivity;
-import com.haozhang.rest.RESTClient;
-import com.haozhang.rest.modle.SearchDatas;
+import com.haozhang.gank.ui.BaseFragment;
+import com.haozhang.gank.ui.fragment.SearchFragment;
 
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
+import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends SupportActivity implements BaseFragment.OnBackToFirstListener{
     Toolbar mToolbar;
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
@@ -41,21 +38,25 @@ public class MainActivity extends BaseActivity {
             }
         }
 
-        if (null != savedInstanceState) {
-
+        if (null == savedInstanceState) {
+            loadRootFragment(R.id.content, SearchFragment.newInstance());
         }
-        // ready to get data
-        RESTClient.loadSearchDatas("Android", 1)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<SearchDatas>() {
-                    @Override
-                    public void call(SearchDatas searchDatas) {
-                        if (null == searchDatas) return;
-                        Log.d("search", "get datas  :" + searchDatas.toString());
-                    }
-                })
-        ;
+
+    }
+
+    @Override
+    public void onBackToFirstFragment() {
+
+    }
+
+    @Override
+    public FragmentAnimator onCreateFragmentAnimator() {
+        // 设置默认Fragment动画  默认竖向(和安卓5.0以上的动画相同)
+        return super.onCreateFragmentAnimator();
+        // 设置横向(和安卓4.x动画相同)
+//        return new DefaultHorizontalAnimator();
+        // 设置自定义动画
+//        return new FragmentAnimator(enter,exit,popEnter,popExit);
     }
 
     @Override
