@@ -11,7 +11,7 @@ import com.haozhang.gank.R;
 import com.haozhang.gank.ui.BaseFragment;
 import com.haozhang.gank.ui.adapter.SearchListAdapter;
 import com.haozhang.rest.RESTClient;
-import com.haozhang.rest.modle.SearchDatas;
+import com.haozhang.rest.modle.BaseData;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -36,9 +36,9 @@ public class SearchFragment extends BaseFragment {
         RESTClient.loadSearchDatas("Android", 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<SearchDatas>() {
+                .subscribe(new Action1<BaseData>() {
                     @Override
-                    public void call(SearchDatas searchDatas) {
+                    public void call(BaseData searchDatas) {
                         if (null == searchDatas) return;
                         Log.d("search", "get datas  :" + searchDatas.getResults().size());
                         getAdapter().setNewData(searchDatas.getResults());

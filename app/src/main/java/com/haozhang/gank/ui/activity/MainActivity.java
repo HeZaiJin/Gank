@@ -12,7 +12,7 @@ import android.view.WindowManager;
 
 import com.haozhang.gank.R;
 import com.haozhang.gank.ui.BaseFragment;
-import com.haozhang.gank.ui.fragment.SearchFragment;
+import com.haozhang.gank.ui.fragment.MainFragment;
 
 import me.yokeyword.fragmentation.SupportActivity;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
@@ -21,6 +21,7 @@ public class MainActivity extends SupportActivity implements BaseFragment.OnBack
     Toolbar mToolbar;
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class MainActivity extends SupportActivity implements BaseFragment.OnBack
         }
 
         if (null == savedInstanceState) {
-            loadRootFragment(R.id.content, SearchFragment.newInstance());
+            loadRootFragment(R.id.content, MainFragment.newInstance());
         }
 
     }

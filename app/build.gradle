@@ -5,6 +5,7 @@ android {
     buildToolsVersion "23.0.3"
 
     defaultConfig {
+        buildConfigField("boolean", "LOG_DEBUG", "true")
         applicationId "com.haozhang.gank"
         minSdkVersion 19
         targetSdkVersion 23

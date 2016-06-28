@@ -81,7 +81,8 @@ public class RESTClient {
         return null;
     }
 
-    public static Observable<BaseData<WelfareItemDatas>> loadWelfareDatas(String type, int index) {
+    public static Observable<BaseData<WelfareItemDatas>> loadWelfareDatas( int index) {
+        String type = "福利";
         String ins = String.valueOf(index);
         if (null != ins) {
             return sHttpService_rx.loadWelfareDatas(type, ins);
