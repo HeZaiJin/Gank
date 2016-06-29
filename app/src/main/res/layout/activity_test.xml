@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.haozhang.gank.ui.TestActivity">
+
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_height="137dp"
+        android:src="@drawable/test" />
+    <ImageView
+        android:layout_width="220dp"
+        android:layout_alignParentRight="true"
+        android:layout_height="137dp"
+        android:src="@drawable/test" />
+
+    <com.haozhang.widget.SlantedTextVeiw
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        app:slantedBackgroundColor="@color/primary"
+        app:slantedLength="40dp"
+        app:slantedText="Android"
+        app:slantedTextColor="@color/primary_light"
+        app:slantedMode="right"
+        app:slantedTextSize="16sp" />
+    <com.haozhang.widget.SlantedTextVeiw
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:layout_alignParentRight="true"
+        app:slantedBackgroundColor="@color/secondary_text"
+        app:slantedLength="40dp"
+        app:slantedText="IOS"
+        app:slantedTextColor="@color/primary"
+        app:slantedMode="left"
+        app:slantedTextSize="16sp" />
+</RelativeLayout>
