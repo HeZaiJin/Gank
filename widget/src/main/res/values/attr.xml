@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="SlantedTextVeiw">
+    <declare-styleable name="SlantedTextView">
         <attr name="slantedTextSize" format="dimension" />
         <attr name="slantedBackgroundColor" format="color" />
         <attr name="slantedText" format="string" />

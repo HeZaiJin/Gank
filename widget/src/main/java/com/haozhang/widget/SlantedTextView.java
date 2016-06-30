@@ -17,11 +17,10 @@ import android.view.View;
 
 /**
  * SlantedTextView 倾斜的文字 不要设置背景
- *
  * @author HaoZhang
  * @date 2016/6/29.
  */
-public class SlantedTextVeiw extends View {
+public class SlantedTextView extends View {
 
     private Paint mPaint;
     private TextPaint mTextPaint;
@@ -32,35 +31,35 @@ public class SlantedTextVeiw extends View {
     private String mSlantedText = "";
     private int mMode = 0;
 
-    public SlantedTextVeiw(Context context) {
+    public SlantedTextView(Context context) {
         this(context, null);
     }
 
-    public SlantedTextVeiw(Context context, AttributeSet attrs) {
+    public SlantedTextView(Context context, AttributeSet attrs) {
         this(context, attrs, -1);
     }
 
-    public SlantedTextVeiw(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SlantedTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public SlantedTextVeiw(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SlantedTextView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
 
     public void init(AttributeSet attrs) {
-        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.SlantedTextVeiw);
+        TypedArray array = getContext().obtainStyledAttributes(attrs, R.styleable.SlantedTextView);
 
-        mTextSize = array.getDimension(R.styleable.SlantedTextVeiw_slantedTextSize, mTextSize);
-        mTextColor = array.getColor(R.styleable.SlantedTextVeiw_slantedTextColor, mTextColor);
-        mSlantedLength = array.getDimension(R.styleable.SlantedTextVeiw_slantedLength, mSlantedLength);
-        mSlantedBackgroundColor = array.getColor(R.styleable.SlantedTextVeiw_slantedBackgroundColor, mSlantedBackgroundColor);
-        mSlantedText = array.getString(R.styleable.SlantedTextVeiw_slantedText);
-        if (array.hasValue(R.styleable.SlantedTextVeiw_slantedMode)) {
-            mMode = array.getInt(R.styleable.SlantedTextVeiw_slantedMode, 0);
+        mTextSize = array.getDimension(R.styleable.SlantedTextView_slantedTextSize, mTextSize);
+        mTextColor = array.getColor(R.styleable.SlantedTextView_slantedTextColor, mTextColor);
+        mSlantedLength = array.getDimension(R.styleable.SlantedTextView_slantedLength, mSlantedLength);
+        mSlantedBackgroundColor = array.getColor(R.styleable.SlantedTextView_slantedBackgroundColor, mSlantedBackgroundColor);
+        mSlantedText = array.getString(R.styleable.SlantedTextView_slantedText);
+        if (array.hasValue(R.styleable.SlantedTextView_slantedMode)) {
+            mMode = array.getInt(R.styleable.SlantedTextView_slantedMode, 0);
         }
         array.recycle();
 
