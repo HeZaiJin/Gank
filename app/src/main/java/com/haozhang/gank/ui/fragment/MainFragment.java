@@ -1,5 +1,7 @@
 package com.haozhang.gank.ui.fragment;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,8 +36,9 @@ public class MainFragment extends BaseFragment {
     private RecyclerView mRecyclerView;
     private SwipeRefreshLayout mRefreshLayout;
     private int mPage = 1;
-
-
+    int mCurrentDy = 0;
+    View mCurrentView;
+    ObjectAnimator mCurrentAnim;
     public static MainFragment newInstance() {
         return new MainFragment();
     }
@@ -65,6 +68,12 @@ public class MainFragment extends BaseFragment {
                         });
             }
         });
+        getAdapter().setOnRecyclerViewItemClickListener(new BaseQuickAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                anim(view);
+            }
+        });
         mRecyclerView.addItemDecoration(new RecycleViewDivider(_mActivity,LinearLayoutManager.HORIZONTAL,15, getResources().getColor(R.color.primary_light)));
         mRecyclerView.setAdapter(getAdapter());
 
@@ -78,6 +87,45 @@ public class MainFragment extends BaseFragment {
         });
     }
 
+    public void anim(View view){
+        mCurrentView = view;
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        mCurrentDy = location[1];
+        mCurrentAnim= ObjectAnimator.ofFloat(view,"translationY",0,-mCurrentDy);
+        mCurrentAnim.setDuration(300);
+        mCurrentAnim.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(TAG,"onresume");
+        if (null!=mCurrentAnim){
+            mCurrentAnim= ObjectAnimator.ofFloat(mCurrentView,"translationY",-mCurrentDy,0);
+            mCurrentAnim.setDuration(300);
+            mCurrentAnim.addListener(new Animator.AnimatorListener() {
+                @Override
+                public void onAnimationStart(Animator animation) { }
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    mCurrentAnim = null;
+                    mCurrentView = null;
+                }
+                @Override
+                public void onAnimationCancel(Animator animation) {}
+                @Override
+                public void onAnimationRepeat(Animator animation) {}
+            });
+            mCurrentAnim.start();
+        }
+        super.onResume();
+    }
+
     public MainAdapter getAdapter() {
         if (null == mAdapter) {
             mAdapter = new MainAdapter(_mActivity);
@@ -85,6 +133,12 @@ public class MainFragment extends BaseFragment {
         return mAdapter;
     }
 
+    @Override
+    public void onDestroy() {
+        mCurrentAnim = null;
+        mCurrentView = null;
+        super.onDestroy();
+    }
 
     @Override
     protected void initLazyView(@Nullable Bundle savedInstanceState) {
