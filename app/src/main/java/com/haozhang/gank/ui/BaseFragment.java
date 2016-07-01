@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.haozhang.gank.ui.fragment.SearchFragment;
+import com.haozhang.gank.ui.fragment.MainFragment;
 
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
 
@@ -106,7 +106,7 @@ public abstract class BaseFragment extends SwipeBackFragment {
         if (getChildFragmentManager().getBackStackEntryCount() > 1) {
             popChild();
         } else {
-            if (this instanceof SearchFragment) {   // 如果是 第一个Fragment 则退出app
+            if (this instanceof MainFragment) {   // 如果是 第一个Fragment 则退出app
                 _mActivity.finish();
             } else {                                    // 如果不是,则回到第一个Fragment
                 _mBackToFirstListener.onBackToFirstFragment();

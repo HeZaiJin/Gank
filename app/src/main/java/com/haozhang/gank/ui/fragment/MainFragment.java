@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.haozhang.gank.R;
 import com.haozhang.gank.ui.BaseFragment;
 import com.haozhang.gank.ui.adapter.MainAdapter;
+import com.haozhang.gank.utils.RecycleViewDivider;
 import com.haozhang.rest.RESTClient;
 import com.haozhang.rest.modle.BaseData;
 import com.haozhang.rest.modle.WelfareItemDatas;
@@ -64,7 +65,9 @@ public class MainFragment extends BaseFragment {
                         });
             }
         });
+        mRecyclerView.addItemDecoration(new RecycleViewDivider(_mActivity,LinearLayoutManager.HORIZONTAL,15, getResources().getColor(R.color.primary_light)));
         mRecyclerView.setAdapter(getAdapter());
+
         mRefreshLayout = (SwipeRefreshLayout) parent.findViewById(R.id.refresh);
         mRefreshLayout.setColorSchemeColors(R.color.primary);
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -82,10 +85,13 @@ public class MainFragment extends BaseFragment {
         return mAdapter;
     }
 
+
     @Override
     protected void initLazyView(@Nullable Bundle savedInstanceState) {
         Log.d(TAG,"initLazyView");
         if (null == savedInstanceState) {
+            mRefreshLayout.setProgressViewOffset(false,0,30);
+            mRefreshLayout.setRefreshing(true);
             refresh();
         }
     }
@@ -98,6 +104,7 @@ public class MainFragment extends BaseFragment {
                 .subscribe(new Action1<BaseData<WelfareItemDatas>>() {
                     @Override
                     public void call(BaseData<WelfareItemDatas> welfareItemDatasBaseData) {
+                        Log.d(TAG, "call() called with: " + "welfareItemDatasBaseData = [" + welfareItemDatasBaseData + "]");
                         if (null == welfareItemDatasBaseData) return;
                         getAdapter().setNewData(welfareItemDatasBaseData.getResults());
                         mRefreshLayout.setRefreshing(false);

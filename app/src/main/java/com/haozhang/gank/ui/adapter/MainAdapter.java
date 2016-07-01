@@ -1,14 +1,15 @@
 package com.haozhang.gank.ui.adapter;
 
 import android.app.Activity;
-import android.widget.ImageView;
+import android.net.Uri;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.haozhang.gank.R;
 import com.haozhang.gank.utils.LogUtils;
 import com.haozhang.gank.utils.ScreenUtils;
+import com.haozhang.lib.SlantedTextView;
 import com.haozhang.rest.modle.WelfareItemDatas;
 
 /**
@@ -29,6 +30,18 @@ public class MainAdapter extends BaseQuickAdapter<WelfareItemDatas> {
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, WelfareItemDatas welfareItemDatas) {
-        Glide.with(mContext).load(welfareItemDatas.getUrl()).dontAnimate().centerCrop().into((ImageView) baseViewHolder.getView(R.id.img));
+//        Glide.with(mContext).load(welfareItemDatas.getUrl()).dontAnimate().centerCrop().into((ImageView) baseViewHolder.getView(R.id.img));
+        String ds = welfareItemDatas.getPublishedAt();
+        int t = ds.indexOf("T");
+        String date = ds.substring(0, t);
+
+        baseViewHolder.setText(R.id.desc,welfareItemDatas.getDesc())
+                      .setText(R.id.who,welfareItemDatas.getWho())
+                      .setText(R.id.date,date);
+        SlantedTextView stv = baseViewHolder.getView(R.id.sland);
+        stv.setText(welfareItemDatas.getType());
+        Uri uri = Uri.parse(welfareItemDatas.getUrl());
+        SimpleDraweeView sdv = baseViewHolder.getView(R.id.img);
+        sdv.setImageURI(uri);
     }
 }

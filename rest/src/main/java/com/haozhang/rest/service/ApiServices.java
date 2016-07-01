@@ -112,7 +112,7 @@ public interface ApiServices {
     @GET("search/query/listview/category/{type}/count/10/page/{index}")
     Observable<BaseData<SearchItemDatas>> loadSearchDatas(@Path("type") String type, @Path("index") String index);
 
-    @GET("search/query/listview/category/{type}/count/10/page/{index}")
+    @GET("data/{type}/10/{index}")
     Observable<BaseData<WelfareItemDatas>> loadWelfareDatas(@Path("type") String type, @Path("index") String index);
 
     /**gank api[end]**/

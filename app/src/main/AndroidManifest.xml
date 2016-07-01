@@ -7,16 +7,15 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".GankApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/BaseTheme">
         <activity
-            android:theme="@style/AppTheme"
-            android:name=".ui.TestActivity"
-            android:label="@string/title_activity_test">
-
+            android:name=".ui.activity.MainActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.MainActivity"
-            android:label="@string/app_name">
+            android:name=".ui.TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

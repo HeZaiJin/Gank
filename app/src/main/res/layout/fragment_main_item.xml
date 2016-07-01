@@ -1,11 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
-    <ImageView
-        android:background="#fff000"
+    android:background="@drawable/sel_item">
+
+    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:id="@+id/img"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_item_height" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        fresco:viewAspectRatio="1.33" />
+
+    <com.haozhang.lib.SlantedTextView xmlns:sland="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sland"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        sland:slantedBackgroundColor="@color/secondary_text_90"
+        sland:slantedLength="40dp"
+        sland:slantedMode="right"
+        sland:slantedTextColor="@color/primary_light"
+        sland:slantedTextSize="18sp" />
+
+    <TextView
+        android:padding="12dp"
+        android:textColor="@color/primary_text"
+        android:textSize="24sp"
+        android:gravity="center_vertical"
+        android:id="@+id/who"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/img">
+    </TextView>
+
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_above="@id/who"
+        android:background="#a0111111"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:textColor="#ffffff"
+        android:textSize="24sp" />
+    <TextView
+        android:id="@+id/date"
+        android:textSize="14sp"
+        android:textColor="@color/secondary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/img"
+        android:gravity="right|bottom"
+        android:padding="10dp"
+        />
+</RelativeLayout>

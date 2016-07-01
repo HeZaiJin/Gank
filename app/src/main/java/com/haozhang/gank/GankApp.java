@@ -2,6 +2,7 @@ package com.haozhang.gank;
 
 import android.app.Application;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.haozhang.gank.utils.CrashHandler;
 
 /**
@@ -22,6 +23,7 @@ public class GankApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fresco.initialize(this);
         sInstance = this;
         // init crash handler
         CrashHandler.getInstance().init("log/gank.log");
