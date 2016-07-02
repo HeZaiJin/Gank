@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.haozhang.gank.R;
@@ -94,6 +95,7 @@ public class MainFragment extends BaseFragment {
         mCurrentDy = location[1];
         mCurrentAnim= ObjectAnimator.ofFloat(view,"translationY",0,-mCurrentDy);
         mCurrentAnim.setDuration(300);
+        mCurrentAnim.setInterpolator(new AccelerateDecelerateInterpolator());
         mCurrentAnim.start();
     }
 
@@ -104,10 +106,10 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void onResume() {
-        Log.d(TAG,"onresume");
         if (null!=mCurrentAnim){
             mCurrentAnim= ObjectAnimator.ofFloat(mCurrentView,"translationY",-mCurrentDy,0);
             mCurrentAnim.setDuration(300);
+            mCurrentAnim.setInterpolator(new AccelerateDecelerateInterpolator());
             mCurrentAnim.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) { }
