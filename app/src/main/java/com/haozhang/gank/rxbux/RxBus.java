@@ -11,7 +11,7 @@ import rx.subjects.Subject;
  */
 public class RxBus {
 
-    private static volatile RxBus defaultInstance;
+    private static volatile RxBus defaultInstance = new RxBus();
 
     private final Subject bus;
 
@@ -22,17 +22,7 @@ public class RxBus {
 
     // 单例RxBus
     public static RxBus getDefault() {
-        RxBus rxBus = defaultInstance;
-        if (defaultInstance == null) {
-            synchronized (RxBus.class) {
-                rxBus = defaultInstance;
-                if (defaultInstance == null) {
-                    rxBus = new RxBus();
-                    defaultInstance = rxBus;
-                }
-            }
-        }
-        return rxBus;
+        return defaultInstance;
     }
 
 

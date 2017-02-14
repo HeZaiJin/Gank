@@ -9,7 +9,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.haozhang.gank.R;
 import com.haozhang.gank.utils.LogUtils;
 import com.haozhang.gank.utils.ScreenUtils;
-import com.haozhang.lib.SlantedTextView;
+import com.haozhang.widget.SlantedTextView;
 import com.haozhang.rest.modle.WelfareItemDatas;
 
 /**
@@ -18,7 +18,6 @@ import com.haozhang.rest.modle.WelfareItemDatas;
  */
 public class MainAdapter extends BaseQuickAdapter<WelfareItemDatas> {
     private static final String TAG = "MainAdapter";
-    private Activity mContext;
     private int mWidth,mHeight;
     public MainAdapter(Activity context) {
         super(R.layout.fragment_main_item, null);

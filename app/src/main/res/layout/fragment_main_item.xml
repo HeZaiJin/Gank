@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/sel_item">
 
-    <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/img"
-        android:layout_width="match_parent"
-        fresco:roundTopLeft="true"
-        fresco:roundTopRight="true"
-        fresco:roundedCornerRadius="5dp"
-        android:layout_height="wrap_content"
-        fresco:viewAspectRatio="1.33" />
-
-    <com.haozhang.lib.SlantedTextView xmlns:sland="http://schemas.android.com/apk/res-auto"
+    <com.haozhang.widget.SlantedTextView xmlns:sland="http://schemas.android.com/apk/res-auto"
         android:id="@+id/sland"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -23,6 +15,16 @@
         sland:slantedTextColor="@color/primary_light"
         sland:slantedTextSize="18sp" />
 
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        fresco:roundTopLeft="true"
+        fresco:roundTopRight="true"
+        fresco:roundedCornerRadius="5dp"
+        android:layout_height="wrap_content"
+        fresco:viewAspectRatio="1.33"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
     <TextView
         android:padding="12dp"
         android:textColor="@color/primary_text"
@@ -55,4 +57,5 @@
         android:gravity="right|bottom"
         android:padding="10dp"
         />
+
 </RelativeLayout>

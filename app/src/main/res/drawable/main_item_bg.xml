@@ -6,7 +6,7 @@
         android:top="4dp">
         <shape>
             <solid android:color="@android:color/darker_gray" />
-            <corners android:radius="5dp" />
+            <corners android:radius="2dp" />
         </shape>
     </item>
     <!-- 白色前景 -->
