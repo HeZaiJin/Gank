@@ -15,3 +15,39 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+# EventBus
+-keepattributes *Annotation*
+-keepclassmembers class ** {
+    @org.greenrobot.eventbus.Subscribe <methods>;
+}
+-keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+
+# Facebook
+-keep class com.facebook.** {*;}
+-keep interface com.facebook.** {*;}
+-keep enum com.facebook.** {*;}
+
+
+# FastJson
+-dontwarn com.alibaba.fastjson.**
+-keep class com.alibaba.fastjson.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+
+
+# Fresco
+-keep class com.facebook.fresco.** {*;}
+-keep interface com.facebook.fresco.** {*;}
+-keep enum com.facebook.fresco.** {*;}
+
+# Glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-dontwarn javax.**
+-dontwarn java.**
+-dontwarn sun.**
+-dontwarn org.**

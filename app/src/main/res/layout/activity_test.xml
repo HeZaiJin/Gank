@@ -17,7 +17,7 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/test" />
 
-    <com.haozhang.lib.SlantedTextView
+    <com.haozhang.widget.SlantedTextView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:gravity="center"
@@ -28,7 +28,7 @@
         app:slantedTextColor="@color/primary_light"
         app:slantedTextSize="16sp" />
 
-    <com.haozhang.lib.SlantedTextView
+    <com.haozhang.widget.SlantedTextView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_alignParentRight="true"
